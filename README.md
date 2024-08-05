@@ -22,11 +22,13 @@
    - Create an .env file in the root directory of your project.
    - Use the provided .env.sample as a reference to set up your environment variables, including the bot token obtained from BotFather.
 
-4. Install Dependencies and Run the Project
+4. Install Dependencies
 
 ```
 yarn
 ```
+
+5. Run the Project
 
 ```
 yarn dev
