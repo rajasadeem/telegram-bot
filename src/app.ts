@@ -10,6 +10,7 @@ const app = express();
 app.use(express.json());
 
 const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
+const API_KEY = process.env.OPENAI_API_KEY;
 
 if (!BOT_TOKEN) {
   console.error(
@@ -19,7 +20,7 @@ if (!BOT_TOKEN) {
 }
 
 const bot = new TelegramBot(BOT_TOKEN, { polling: true });
-const openai = new OpenAI();
+const openai = new OpenAI({ apiKey: API_KEY });
 
 const messageSchema = new mongoose.Schema(
   {
