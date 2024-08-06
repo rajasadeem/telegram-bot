@@ -1,6 +1,6 @@
-# telegram-bot
+# Telegram-Bot
 
-# steps to run the project
+# Steps to run the project
 
 1. Create a Bot on Telegram
 
@@ -29,6 +29,14 @@ yarn
 ```
 
 5. Run the Project
+
+- for prod
+
+```
+yarn start
+```
+
+- for dev
 
 ```
 yarn dev
