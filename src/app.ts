@@ -24,9 +24,19 @@ const openai = new OpenAI({ apiKey: API_KEY });
 
 const messageSchema = new mongoose.Schema(
   {
-    chatId: Number,
-    role: String,
-    content: String,
+    chatId: {
+      type: Number,
+      required: true,
+    },
+    role: {
+      type: String,
+      enum: ["system", "user", "assistant"],
+      required: true,
+    },
+    content: {
+      type: String,
+      required: true,
+    },
     name: String,
   },
   { timestamps: true }
@@ -71,13 +81,14 @@ bot.on("message", async (msg) => {
       .filter((item) => item.content && item.role && item.name)
       .map((item) => ({
         role: item.role,
-        content: item.content!,
+        content: item.content,
         name: item.name,
-      }));
+      }))
+      .reverse();
 
     const messages = [
       { role: "system", content: prompt, name: "system" },
-      ...previousMessages.reverse(),
+      ...previousMessages,
     ];
 
     const response = await openai.chat.completions.create({
